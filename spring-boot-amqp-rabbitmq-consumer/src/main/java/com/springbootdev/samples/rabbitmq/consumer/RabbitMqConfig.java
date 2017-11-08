@@ -17,7 +17,7 @@ import java.util.Map;
 public class RabbitMqConfig {
 
     @Bean
-    public MessageConverter jsonMessageConverter()
+    public MessageConverter messageConverter()
     {
         Jackson2JsonMessageConverter jsonMessageConverter = new Jackson2JsonMessageConverter();
         jsonMessageConverter.setClassMapper(classMapper());
@@ -29,7 +29,7 @@ public class RabbitMqConfig {
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory)
     {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
-        template.setMessageConverter(new Jackson2JsonMessageConverter());
+        template.setMessageConverter(messageConverter());
         return template;
     }
 
